@@ -1,4 +1,3 @@
-import os
 from subprocess import run, PIPE
 from time import sleep
 
@@ -27,6 +26,3 @@ def Persistence():
         if checkInternet() == 0:
             Logout()
         sleep(constants.CHECK_TIME)
-
-
-Persistence()
