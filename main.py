@@ -23,13 +23,8 @@ CheckInternetPerSecond = 5
 # 搬掉icmp cmd就ping不到了
 # netsh advfirewall firewall add rule name="ban connectInternet0" dir=out remoteip=xxx.xxx.xxx.xxx(这个地方是IP) action=block protocol=TCP
 
-# netsh advfirewall firewall add rule name="ban connectInternet1" dir=out remoteip=172.17.0.1 action=block protocol=TCP
-# netsh advfirewall firewall add rule name="ban connectInternet2" dir=out remoteip=172.17.0.1 action=block protocol=icmpv4
-# netsh advfirewall firewall add rule name="ban connectInternet3" dir=out remoteip=172.17.0.1 action=block protocol=icmpv6
-
-# netsh advfirewall firewall add rule name="ban connectInternet4" dir=out remoteip=172.17.0.2 action=block protocol=TCP
-# netsh advfirewall firewall add rule name="ban connectInternet5" dir=out remoteip=172.17.0.2 action=block protocol=icmpv4
-# netsh advfirewall firewall add rule name="ban connectInternet6" dir=out remoteip=172.17.0.2 action=block protocol=icmpv6
+# netsh advfirewall firewall add rule name="ban connectInternet1" dir=out remoteip=172.17.0.1 action=block
+# netsh advfirewall firewall add rule name="ban connectInternet4" dir=out remoteip=172.17.0.2 action=block
 
 # 用来查看防火墙状态
 # netsh advfirewall show currentprofile
@@ -50,8 +45,11 @@ def checkInternet():
     return code
 
 
+command = "netsh advfirewall show allprofiles"
+
+
 def fireWall():
-    os.system("netsh advfirewall show currentprofile")
+    os.system(command)
 
 
 fireWall()
