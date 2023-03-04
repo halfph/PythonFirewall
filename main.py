@@ -3,6 +3,8 @@ from time import sleep
 from subprocess import run, PIPE
 import requests
 
+import FireWall
+
 logoutUrl = "http://172.17.0.2:801/eportal/?c=ACSetting&a=Logout&loginMethod=1&protocol=http%3A&hostname=172.17.0.2" \
             "&port=&iTermType=1&wlanuserip=null&wlanacip=null&wlanacname=null&redirect=null&session=null&vlanid" \
             "=undefined&mac=00-00-00-00-00-00&ip=&queryACIP=0&jsVersion=2.4.3 "
@@ -29,38 +31,12 @@ CheckInternetPerSecond = 5
 # 用来查看防火墙状态
 # netsh advfirewall show currentprofile
 
-def login():
-    response = requests.get(loginUrl).status_code
-    print("状态码{}".format(response))
-
-
-def logout():
-    response = requests.get(logoutUrl).status_code
-    print("状态码{}".format(response))
-
-
-def checkInternet():
-    code = run("ping baidu.com", stdout=PIPE, stderr=PIPE, stdin=PIPE,
-               shell=True).returncode
-    return code
-
-
 command = "netsh advfirewall show allprofiles"
 
 
 def fireWall():
-    os.system(command)
+    os.system(FireWall.Command.ping("119.91.141.182"))
 
 
-fireWall()
+print(FireWall.Command.ping("django"))
 exit(0)
-while True:
-    if checkInternet():
-        print("现在是断网状态")
-        print("现在开始重新联网")
-        login()  # 重新开始登录
-    else:
-        print("现在是正常联网状态")
-        print("准备断开网络")
-        logout()
-    sleep(CheckInternetPerSecond)     # 每隔1s 检测一次
