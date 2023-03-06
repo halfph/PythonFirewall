@@ -13,10 +13,7 @@ def work():
     FireWall.BlockIP()
 
 
-# @atexit.register
-# def clean():
-#     FireWall.Check()
-# work()
-
-command = FireWall.Command()
-command.reset()
+@atexit.register
+def clean():
+    FireWall.Check()
+work()

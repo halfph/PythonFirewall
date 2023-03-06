@@ -45,7 +45,7 @@ class Command:
 
 def BlockIP():
     command = Command()
-    command.checkFireWallStatus()
+    command.banIpByAll();
 
 
 def Check():
