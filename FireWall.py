@@ -42,10 +42,14 @@ class Command:
     def reset(self):
         os.system(self.ResetFireWall)
 
+    def start(self):
+        os.system(self.TurnFireWallOn)
+
 
 def BlockIP():
     command = Command()
-    command.banIpByAll();
+    command.start()
+    command.banIpByAll()
 
 
 def Check():

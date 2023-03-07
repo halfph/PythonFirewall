@@ -13,7 +13,9 @@ def work():
     FireWall.BlockIP()
 
 
-@atexit.register
-def clean():
-    FireWall.Check()
+# @atexit.register
+# def clean():
+#     FireWall.Check()
+
+
 work()
